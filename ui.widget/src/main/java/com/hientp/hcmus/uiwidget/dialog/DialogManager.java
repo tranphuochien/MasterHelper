@@ -23,11 +23,11 @@ import timber.log.Timber;
 public class DialogManager {
     public static final int NORMAL_TYPE = 0;
     private static final int UPDATE_TYPE = 4;
-    public static final int PROGRESS_DIALOG_TIMEOUT = 60000;//ms
+    private static final int PROGRESS_DIALOG_TIMEOUT = 60000;//ms
 
-    static SweetAlertDialog mLoadingDialog = null;
-    static SweetAlertDialog mDialog = null;
-    static long mLastShowProcessDialog = 0;
+    private static SweetAlertDialog mLoadingDialog = null;
+    private static SweetAlertDialog mDialog = null;
+    private static long mLastShowProcessDialog = 0;
 
     public synchronized static void dismiss() {
         closeLoadDialog();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="alert_dialog" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">false</item>
@@ -20,25 +21,28 @@
     </style>
 
     <declare-styleable name="CompoundDrawables">
-        <attr name="iconLeft" format="reference"/>
-        <attr name="iconTop" format="reference"/>
-        <attr name="iconRight" format="reference"/>
-        <attr name="iconBottom" format="reference"/>
-        <attr name="iconStart" format="reference"/>
-        <attr name="iconEnd" format="reference"/>
+        <attr name="iconLeft" format="reference" />
+        <attr name="iconTop" format="reference" />
+        <attr name="iconRight" format="reference" />
+        <attr name="iconBottom" format="reference" />
+        <attr name="iconStart" format="reference" />
+        <attr name="iconEnd" format="reference" />
     </declare-styleable>
+
     <declare-styleable name="FontIconDrawable">
-        <attr name="iconText" format="string|reference"/>
-        <attr name="iconColor" format="color|reference"/>
-        <attr name="iconFontSize" format="dimension|reference"/>
-        <attr name="autoMirrored" format="boolean|reference"/>
-        <attr name="needMirroring" format="boolean|reference"/>
+        <attr name="iconText" format="string|reference" />
+        <attr name="iconColor" format="color|reference" />
+        <attr name="iconFontSize" format="dimension|reference" />
+        <attr name="autoMirrored" format="boolean|reference" />
+        <attr name="needMirroring" format="boolean|reference" />
     </declare-styleable>
+
     <declare-styleable name="FontIconView">
-        <attr name="overridePressed" format="boolean|reference"/>
-        <attr name="pressedGlowColor" format="color|reference"/>
-        <attr name="pressedGlowRadius" format="dimension|reference"/>
+        <attr name="overridePressed" format="boolean|reference" />
+        <attr name="pressedGlowColor" format="color|reference" />
+        <attr name="pressedGlowRadius" format="dimension|reference" />
     </declare-styleable>
+
     <style name="alert_dialog_transparent" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">true</item>

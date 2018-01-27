@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
 
 def cfg = rootProject.ext.configuration
 
@@ -35,5 +36,8 @@ dependencies {
     implementation libs.support_appcompat_v7
     implementation libs.retrofitConverter
     implementation libs.timber
+    implementation libs.butterKnife
+    annotationProcessor libs.butterKnifeCompiler
+
     compile project(path: ':utility')
 }

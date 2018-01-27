@@ -1,11 +1,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:id="@+id/toast_layout_root"
-             android:layout_width="228dp"
-             android:layout_height="100dp"
-             android:background="@drawable/bg_round_black_alpha"
-             android:padding="10dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toast_layout_root"
+    android:layout_width="228dp"
+    android:layout_height="100dp"
+    android:background="@drawable/bg_round_black_alpha"
+    android:padding="10dp">
 
     <com.hientp.hcmus.uiwidget.iconfont.IconFontTextView
         android:id="@+id/tvMessage"

@@ -7,19 +7,17 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.Transformation;
@@ -31,96 +29,112 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hientp.hcmus.uiwidget.R;
+import com.hientp.hcmus.uiwidget.R2;
 import com.hientp.hcmus.uiwidget.dialog.listener.OnDialogListener;
 import com.hientp.hcmus.utility.DeviceUtil;
 
-import java.util.List;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+import timber.log.Timber;
 
 
 public class SweetAlertDialog extends Dialog implements View.OnClickListener {
-    private static final String TAG = SweetAlertDialog.class.getName();
     public static final int NORMAL_TYPE = 0;
-
     public static final int ERROR_TYPE = 1;
-
     public static final int SUCCESS_TYPE = 2;
-
     public static final int WARNING_TYPE = 3;
-
     public static final int INFO_NO_ICON = 4;
-
     public static final int PROGRESS_TYPE = 5;
-
     public static final int UPDATE_TYPE = 6;
-
     public static final int INFO_TYPE = 7;
-
     public static final int CUSTOM_CONTENT_VIEW = 8;
-
     public static final int UPDATE = 9;
-
     public static final int NO_INTERNET = 10;
-
     public static final int STYLE = R.style.alert_dialog;
+    private static final String TAG = SweetAlertDialog.class.getName();
     View mDialogView;
-    private View mLine;
-    private LinearLayout mRootView;
-    private LinearLayout mLayoutCustomButton;
-    private RelativeLayout mLayoutTitleVer;
-    private RelativeLayout mLayoutButton;
-    private AnimationSet mModalInAnim;
-    private AnimationSet mModalOutAnim;
-    private Animation mOverlayOutAnim;
-    private Animation mErrorInAnim;
-    private AnimationSet mErrorXInAnim;
-    private AnimationSet mSuccessLayoutAnimSet;
-    private Animation mSuccessBowAnim;
-    private TextView mContentTextView;
-    private String mContentText;
-    private boolean mShowCancel;
-    private boolean mShowConfirm;
-    private boolean mShowContent;
-    private String mCancelText;
-    private String mConfirmText;
-    private String mUpdateText;
-    private String mVersionText;
-    private String mContentTextNointernet;
-    private String mCheckBoxTitle;
-    private View mViewCustom;
-    private int mID;
-    private int mAlertType;
-    private FrameLayout mErrorFrame;
-    private FrameLayout mSuccessFrame;
-    private FrameLayout mNormalFrame;
-    private FrameLayout mProgressFrame;
-    private FrameLayout mUpdateFrame;
-    private FrameLayout mInfoFrame;
-    private FrameLayout mCustomFrame;
-    private FrameLayout mInternetFrame;
-    private FrameLayout mCustomContentFrame;
-    private ImageView mErrorX;
-    private Drawable mCustomImgDrawable;
-    private ImageView mCustomImage;
-    private TextView mConfirmButton;
-    private TextView mCancelButton;
-    private TextView mUpdateButton;
-    private TextView mTitleTextView;
-    private TextView mVersionTextView;
+    @BindView(R2.id.view_line)
+    View mLine;
+    @BindView(R2.id.sweetDialogRootView)
+    LinearLayout mRootView;
+    @BindView(R2.id.layout_custom_button)
+    LinearLayout mLayoutCustomButton;
+    @BindView(R2.id.layout_title_ver)
+    RelativeLayout mLayoutTitleVer;
+    @BindView(R2.id.layout_dialog_button)
+    RelativeLayout mLayoutButton;
+    AnimationSet mModalInAnim;
+    AnimationSet mModalOutAnim;
+    Animation mOverlayOutAnim;
+    Animation mErrorInAnim;
+    AnimationSet mErrorXInAnim;
+    AnimationSet mSuccessLayoutAnimSet;
+    Animation mSuccessBowAnim;
+    @BindView(R2.id.content_text)
+    TextView mContentTextView;
+    String mContentText;
+    boolean mShowCancel;
+    boolean mShowConfirm;
+    boolean mShowContent;
+    String mCancelText;
+    String mConfirmText;
+    String mUpdateText;
+    String mVersionText;
+    String mContentTextNointernet;
+    String mCheckBoxTitle;
+    int mAlertType;
+    @BindView(R2.id.error_frame)
+    FrameLayout mErrorFrame;
+    @BindView(R2.id.success_frame)
+    FrameLayout mSuccessFrame;
+    @BindView(R2.id.normal_frame)
+    FrameLayout mNormalFrame;
+    @BindView(R2.id.progress_dialog)
+    FrameLayout mProgressFrame;
+    @BindView(R2.id.update_frame)
+    FrameLayout mUpdateFrame;
+    @BindView(R2.id.info_frame)
+    FrameLayout mInfoFrame;
+    @BindView(R2.id.custom_rootview)
+    FrameLayout mCustomFrame;
+    @BindView(R2.id.internet_frame)
+    FrameLayout mInternetFrame;
+    @BindView(R2.id.custom_content)
+    FrameLayout mCustomContentFrame;
+    @BindView(R2.id.error_x)
+    ImageView mErrorX;
+    Drawable mCustomImgDrawable;
+    @BindView(R2.id.custom_image)
+    ImageView mCustomImage;
+    @BindView(R2.id.confirm_button)
+    TextView mConfirmButton;
+    @BindView(R2.id.cancel_button)
+    TextView mCancelButton;
+    @BindView(R2.id.update_button)
+    TextView mUpdateButton;
+    @BindView(R2.id.title_text)
+    TextView mTitleTextView;
+    @BindView(R2.id.version)
+    TextView mVersionTextView;
+    @BindView(R2.id.warning_frame)
+    FrameLayout mWarningFrame;
+    @BindView(R2.id.id_check_box)
+    CheckBox mCheckBox;
+    OnDialogListener mClickButtonArrListener;
+    boolean mCloseFromCancel;
+    @BindView(R2.id.layout_update_button)
+    LinearLayout mLayoutUpdateButton;
+    private Unbinder unbinder;
     private String mTitleText;
     private String[] mArrButton;
-    private FrameLayout mWarningFrame;
-    private CheckBox mCheckBox;
     private OnSweetClickListener mCancelClickListener;
     private OnSweetClickListener mConfirmClickListener;
     private OnSweetClickListener mUpdateClickListener;
-    OnDialogListener mClickButtonArrListener;
-    boolean mCloseFromCancel;
-    private boolean mIsChecked = false;
     private int backgroundResource;
 
-    private LinearLayout mLayoutUpdateButton;
     public SweetAlertDialog(Context context) {
-        this(context, NORMAL_TYPE, R.style.alert_dialog);
+        this(context, NORMAL_TYPE, STYLE);
     }
 
     public SweetAlertDialog(Context context, int alertType, int style) {
@@ -180,7 +194,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
             @Override
             protected void applyTransformation(float interpolatedTime, Transformation t) {
                 Window window = getWindow();
-                if(window == null){
+                if (window == null) {
                     return;
                 }
                 WindowManager.LayoutParams wlp = window.getAttributes();
@@ -196,37 +210,33 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
     public void onBackPressed() {
     }
 
+    @Override
+    public void setContentView(@NonNull View view) {
+        super.setContentView(view);
+        unbinder = ButterKnife.bind(this);
+    }
+
+    @Override
+    public void setContentView(int layoutResID) {
+        super.setContentView(layoutResID);
+        unbinder = ButterKnife.bind(this);
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (unbinder != null) {
+            unbinder.unbind();
+        }
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog__sweet);
+        setContentView(R.layout.dialog_sweet);
 
-        mRootView = (LinearLayout) findViewById(R.id.sweetDialogRootView);
-        mLayoutTitleVer = (RelativeLayout) findViewById(R.id.layout_title_ver);
-        mLayoutButton = (RelativeLayout) findViewById(R.id.layout_dialog_button);
-        mLayoutCustomButton = (LinearLayout) findViewById(R.id.layout_custom_button);
+
         mDialogView = getWindow().getDecorView().findViewById(android.R.id.content);
-        mContentTextView = (TextView) findViewById(R.id.content_text);
         mContentTextView.setMovementMethod(new ScrollingMovementMethod());
-        mTitleTextView = (TextView) findViewById(R.id.title_text);
-        mErrorFrame = (FrameLayout) findViewById(R.id.error_frame);
-        mInfoFrame = (FrameLayout) findViewById(R.id.info_frame);
-        mCustomFrame = (FrameLayout) findViewById(R.id.custom_rootview);
-        mInternetFrame = (FrameLayout) findViewById(R.id.internet_frame);
-        mCustomContentFrame = (FrameLayout) findViewById(R.id.custom_content);
-        mErrorX = (ImageView) mErrorFrame.findViewById(R.id.error_x);
-        mVersionTextView = (TextView) findViewById(R.id.version);
-        mSuccessFrame = (FrameLayout) findViewById(R.id.success_frame);
-        mNormalFrame = (FrameLayout) findViewById(R.id.normal_frame);
-        mUpdateFrame = (FrameLayout) findViewById(R.id.update_frame);
-        mProgressFrame = (FrameLayout) findViewById(R.id.progress_dialog);
-        mLine = findViewById(R.id.view_line);
-        mCustomImage = (ImageView) findViewById(R.id.custom_image);
-        mWarningFrame = (FrameLayout) findViewById(R.id.warning_frame);
-        mConfirmButton = (TextView) findViewById(R.id.confirm_button);
-        mCancelButton = (TextView) findViewById(R.id.cancel_button);
-        mUpdateButton = (TextView) findViewById(R.id.update_button);
-        mCheckBox = (CheckBox) findViewById(R.id.id_check_box);
-        mLayoutUpdateButton = (LinearLayout) findViewById(R.id.layout_update_button);
         mUpdateButton.setOnClickListener(this);
         mConfirmButton.setOnClickListener(this);
         mCancelButton.setOnClickListener(this);
@@ -244,7 +254,6 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
         changeAlertType(mAlertType, true);
         setContentHtmlText(mContentText);
         setWidthDialog();
-
     }
 
     /**
@@ -324,7 +333,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
                     mUpdateFrame.setVisibility(View.VISIBLE);
                     mLayoutUpdateButton.setGravity(Gravity.CENTER);
                     mLayoutUpdateButton.setWeightSum(10);
-                    mLayoutUpdateButton.setPadding(4,8,4,8);
+                    mLayoutUpdateButton.setPadding(4, 8, 4, 8);
                     mUpdateButton.setBackground(null);
                     mUpdateButton.setTextColor(Color.parseColor("#008fe5"));
                     mUpdateButton.setGravity(Gravity.RIGHT);
@@ -620,7 +629,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
                     mLayoutCustomButton.addView(tv);
                 }
             } catch (Exception e) {
-                Log.e(TAG, "setArrButton()" +e);
+                Timber.d(e);
             }
         }
         if (mLayoutButton != null && mArrButton != null) {
@@ -655,7 +664,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
         }
     }
 
-    public static interface OnSweetClickListener {
+    public interface OnSweetClickListener {
         public void onClick(SweetAlertDialog sweetAlertDialog);
     }
 }
