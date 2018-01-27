@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.hientp.hcmus.uiwidget.iconfont.IconFont
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:gravity="center"
+            android:paddingBottom="@dimen/zpw_padding_10"
+            android:paddingTop="@dimen/zpw_padding_20"
+            android:textColor="#ff7c00"
+            app:iconName="dialoge_connect"
+            app:iconSize="60dp" />
+
+        <TextView
+            android:id="@+id/title_nointerne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/zpw_padding_8"
+            android:paddingTop="@dimen/zpw_padding_8"
+            android:text="@string/sdk_dialog_nointernet_title"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/text_color_bold"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_content_nointernet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:lineSpacingExtra="@dimen/pading_top_min"
+            android:paddingBottom="@dimen/zpw_padding_10"
+            android:paddingTop="@dimen/zpw_padding_10"
+            android:textColor="@color/text_color_bold"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>

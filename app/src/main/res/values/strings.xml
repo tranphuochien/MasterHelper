@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">MasterHelper</string>
+    <string name="retry">Retry</string>
+    <string name="exception_no_connection_try_again">no internet</string>
+    <string name="btn_withdraw">Rút Tiền</string>
+    <string name="btn_update">Cập Nhật</string>
+    <string name="btn_continue">Tiếp Tục</string>
+    <string name="btn_pay_now">Thanh Toán</string>
+    <string name="btn_deposit">Nạp Tiền</string>
+    <string name="btn_confirm">Xác Nhận</string>
+    <string name="btn_cancel">Bỏ Qua</string>
+    <string name="btn_start">Bắt Đầu</string>
+    <string name="btn_exit">Thoát</string>
+    <string name="btn_wait_loading">Đợi tải</string>
+    <string name="btn_reload">Tải Lại</string>
+    <string name="btn_turn_on_network">Bật Kết Nối</string>
+    <string name="btn_send">Gửi</string>
+    <string name="btn_link">Liên Kết</string>
+    <string name="btn_cancel_transaction">Hủy Giao Dịch</string>
+    <string name="btn_retry_select_bank">Chọn ngân hàng khác</string>
+    <string name="btn_return_home">Về Trang Chủ</string>
+    <string name="txt_continue">Tiếp tục</string>
+    <string name="txt_deposit">Nạp tiền</string>
+    <string name="txt_withdraw">Rút tiền</string>
+    <string name="txt_update">Cập nhật</string>
+    <string name="txt_close">Đóng</string>
+    <string name="txt_retry">Thử lại</string>
+    <string name="txt_cancel">Bỏ qua</string>
+    <string name="txt_warning">Cảnh báo</string>
+    <string name="txt_later">Để sau</string>
+    <string name="miss_browser">Vui lòng kiểm tra lại trình duyệt web trên thiết bị của bạn</string>
+    <string name="miss_playstore">Vui lòng kiểm tra lại google play store trên thiết bị của bạn</string>
 </resources>

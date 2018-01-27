@@ -5,8 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/MasterHelper.iml" filepath="$PROJECT_DIR$/MasterHelper.iml" />
       <module fileurl="file://$PROJECT_DIR$/MasterHelper.git.iml" filepath="$PROJECT_DIR$/MasterHelper.git.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/ui.widget/ui.widget.iml" filepath="$PROJECT_DIR$/ui.widget/ui.widget.iml" />
+      <module fileurl="file://$PROJECT_DIR$/utility/utility.iml" filepath="$PROJECT_DIR$/utility/utility.iml" />
     </modules>
   </component>
 </project>

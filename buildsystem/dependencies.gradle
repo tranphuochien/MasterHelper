@@ -1,0 +1,58 @@
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+ext {
+    //Android
+    supportVersion = '27.0.2'
+
+    //Libraries Version
+    daggerVersion = '2.13'
+    butterKnifeVersion = '8.7.0'
+    javaxAnnotationVersion = '10.0-b28'
+    gsonVersion = '2.8.2'
+    okHttpVersion = '3.8.0'
+    okHttpLoggingInterceptor = '3.8.0'
+    retrofitVersion = '2.3.0'
+    retrofitConverterVersion = '2.2.0'
+    retrofitAdapterVersion = '2.1.0'
+    timberVersion = '4.6.0'
+    eventBusVersion = "3.0.0"
+    frescoVersion = "1.8.0"
+
+    //Testing
+    jUnitVersion = '4.12'
+    runnerVersion = '1.0.1'
+    espressoVersion = '2.2.2'
+
+    libraries = [
+            daggerCompiler         : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            dagger                 : "com.google.dagger:dagger:${daggerVersion}",
+            javaxAnnotation        : "org.glassfish:javax.annotation:${javaxAnnotationVersion}",
+            butterKnife            : "com.jakewharton:butterknife:${butterKnifeVersion}",
+            butterKnifeCompiler    : "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
+            retrofit               : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitAdapter        : "com.squareup.retrofit2:adapter-rxjava:${retrofitAdapterVersion}",
+            retrofitConverter      : "com.squareup.retrofit2:converter-gson:${retrofitConverterVersion}",
+            retrofitLogging        : "com.squareup.okhttp3:logging-interceptor:${okHttpLoggingInterceptor}",
+            timber                 : "com.jakewharton.timber:timber:${timberVersion}",
+            okHttp                 : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+            eventbus               : "org.greenrobot:eventbus:${eventBusVersion}",
+            gson                   : "com.google.code.gson:gson:${gsonVersion}",
+            fresco                 : "com.facebook.fresco:fresco:${frescoVersion}",
+
+            support_appcompat_v7   : "com.android.support:appcompat-v7:${supportVersion}",
+            support_recyclerview_v7: "com.android.support:recyclerview-v7:${supportVersion}",
+            support_design         : "com.android.support:design:${supportVersion}",
+    ]
+
+    testingLibraries = [
+            junit      : "junit:junit:${jUnitVersion}",
+            espresso   : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+            runner     : "com.android.support.test:runner:${runnerVersion}"
+    ]
+
+}
