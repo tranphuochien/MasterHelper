@@ -99,7 +99,7 @@ public class AppLifeCycle implements Application.ActivityLifecycleCallbacks {
     }
 
     private void applicationStatus() {
-        Timber.i("Is application background " + isBackGround());
+        Timber.i("Is application background %s", isBackGround());
         if (isBackGround()) {
             if (mLastState == 0) {
                 return;

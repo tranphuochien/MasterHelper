@@ -9,6 +9,7 @@ import com.hientp.hcmus.masterhelper.AndroidApplication;
 import com.hientp.hcmus.masterhelper.internal.di.modules.ApplicationModule;
 import com.hientp.hcmus.masterhelper.internal.di.modules.ApplicationPluginModule;
 import com.hientp.hcmus.masterhelper.navigation.Navigator;
+import com.hientp.hcmus.masterhelper.ui.fragment.SplashScreenFragment;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -41,4 +42,6 @@ public abstract class ApplicationComponent {
 
     /*INJECT*/
     public abstract void inject(AndroidApplication androidApplication);
+
+    public abstract void inject(SplashScreenFragment f);
 }

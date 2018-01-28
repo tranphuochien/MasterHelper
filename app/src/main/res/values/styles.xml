@@ -13,4 +13,17 @@
         <item name="android:textSize">@dimen/textsize.text.main</item>
     </style>
 
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <style name="AppTheme.NoActionBar.Splash">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@layout/activity_splash_background</item>
+    </style>
+
 </resources>

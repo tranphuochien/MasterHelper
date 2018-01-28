@@ -3,9 +3,9 @@ package com.hientp.hcmus.masterhelper.ui.fragment;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -36,23 +36,21 @@ import timber.log.Timber;
  */
 public abstract class BaseFragment extends Fragment {
 
-    protected abstract void setupFragmentComponent();
-
-    protected abstract int getResLayoutId();
-
     public final String TAG = getClass().getSimpleName();
-
+    protected final Navigator navigator = AndroidApplication.instance().getAppComponent().navigator();
     private Snackbar mSnackBar;
     private SweetAlertDialog mProgressDialog;
     private Unbinder unbinder;
     private Handler mShowLoadingTimeoutHandler;
     private Runnable mShowLoadingTimeoutRunnable;
 
-    protected final Navigator navigator = AndroidApplication.instance().getAppComponent().navigator();
+    protected abstract void setupFragmentComponent();
+
+    protected abstract int getResLayoutId();
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(getResLayoutId(), container, false);
         unbinder = ButterKnife.bind(this, view);
         setupFragmentComponent();
@@ -82,6 +80,9 @@ public abstract class BaseFragment extends Fragment {
 
     public void showSnackbar(int message, View.OnClickListener listener) {
         hideSnackbar();
+        if (getActivity() == null) {
+            return;
+        }
         mSnackBar = Snackbar.make(getActivity().findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG);
         if (listener != null) mSnackBar.setAction(R.string.retry, listener);
         mSnackBar.show();
@@ -254,26 +255,8 @@ public abstract class BaseFragment extends Fragment {
             return;
         }
         final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        if(imm != null) {
+        if (imm != null) {
             imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
         }
     }
-
-    public void hideKeyboard(View view) {
-        if (view == null) {
-            return;
-        }
-        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        if(imm !=null) {
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-    }
-
-    public void onNewIntent(Intent intent) {
-    }
-
-    protected void changeFragment(Fragment f) {
-
-    }
-
 }
